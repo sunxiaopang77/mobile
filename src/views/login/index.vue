@@ -85,9 +85,8 @@ export default {
 
         // 验证通过，提交表单
         this.isLoginLoading = true
-        const { data } = await login(this.user)
-
-        console.log(data)
+        const res = await login(this.user)
+        this.$store.commit('setUser', res.data.data)
         this.$toast.success('登录成功')
       } catch (err) {
         if (err.response && err.response.status === 400) {
