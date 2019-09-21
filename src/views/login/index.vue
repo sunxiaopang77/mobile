@@ -57,7 +57,7 @@
 
 <script>
 import { login } from '@/api/user'
-
+import request from '@/utils/request'
 export default {
   name: 'LoginIndex',
   data () {
@@ -69,7 +69,14 @@ export default {
       isLoginLoading: false // 控制登录按钮的 loading 状态
     }
   },
-
+  created () {
+    request({
+      method: 'GET',
+      url: '/app/v1_0/channels'
+    }).then(res => {
+      console.log(res.data)
+    })
+  },
   methods: {
     async onLogin () {
       // 获取表单数据
